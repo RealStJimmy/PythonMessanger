@@ -1,0 +1,21 @@
+					#print data
+					data = data.encode(encoding='utf_8', errors='strict')
+					file = open("/home/stjimmy/Desktop/Encrypted Python/key.key", "rb")
+					key = file.read()
+					file.close()
+					f = Fernet(key)
+					decrypted = f.decrypt(data)										
+					sys.stdout.write(decrypted)
+					prompt()
+			
+			#user entered a message
+			else:
+				msg = sys.stdin.readline()
+				real_msg = msg.encode(encoding='utf_8', errors='strict')
+				file = open("/home/stjimmy/Desktop/Encrypted Python/key.key", "rb")
+				key = file.read()
+				file.close()
+				f = Fernet(key)
+				encrypted = f.encrypt(real_msg)
+				s.send(encrypted)
+				prompt()
